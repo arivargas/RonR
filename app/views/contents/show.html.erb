@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Author:</b>
+  <%= @content.author %>
+</p>
+
+<p>
+  <b>Pub date:</b>
+  <%= @content.pub_date %>
+</p>
+
+<p>
+  <b>Ref date:</b>
+  <%= @content.ref_date %>
+</p>
+
+<p>
+  <b>Title1:</b>
+  <%= @content.title1 %>
+</p>
+
+<p>
+  <b>Title2:</b>
+  <%= @content.title2 %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @content.website %>
+</p>
+
+<p>
+  <b>Volume:</b>
+  <%= @content.volume %>
+</p>
+
+<p>
+  <b>Edition:</b>
+  <%= @content.edition %>
+</p>
+
+<p>
+  <b>Pub place:</b>
+  <%= @content.pub_place %>
+</p>
+
+<p>
+  <b>Pub house:</b>
+  <%= @content.pub_house %>
+</p>
+
+<p>
+  <b>Journal num:</b>
+  <%= @content.journal_num %>
+</p>
+
+<p>
+  <b>Pages:</b>
+  <%= @content.pages %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @content.User %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

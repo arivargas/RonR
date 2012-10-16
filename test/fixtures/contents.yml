@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  author: MyString
+  pub_date: 2012-10-14
+  ref_date: 2012-10-14
+  title1: MyString
+  title2: MyString
+  website: MyString
+  volume: MyString
+  edition: MyString
+  pub_place: MyString
+  pub_house: MyString
+  journal_num: MyString
+  pages: MyString
+  User: 
+
+two:
+  author: MyString
+  pub_date: 2012-10-14
+  ref_date: 2012-10-14
+  title1: MyString
+  title2: MyString
+  website: MyString
+  volume: MyString
+  edition: MyString
+  pub_place: MyString
+  pub_house: MyString
+  journal_num: MyString
+  pages: MyString
+  User: 

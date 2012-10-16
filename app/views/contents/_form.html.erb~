@@ -1,0 +1,114 @@
+<%= form_for(@content) do |f| %>
+  <% if @content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+      <% @content.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Author %><br />
+    <%= f.text_field :author , :required => true, :placeholder => 'Lastname, First name letter'%>
+    <button>Add more authors</button>
+    <label>If there's no author, write down <strong>Anonymous</strong></label>
+  </div>
+  
+  
+  <div class="field">
+	<% if @content.ref_type == 1 %>	    
+    <%= f.label :Book_title %><br />
+   <% elsif @content.ref_type == 2 %>	   
+    <%= f.label :Chapter_title %><br />
+   <% elsif @content.ref_type == 3 %>
+    <%= f.label :Thesis_title %><br />
+   <% elsif @content.ref_type >= 4 and @content.ref_type <= 6 %>
+    <%= f.label :Article_title %><br />
+   <% else @content.ref_type == 7 %>
+    <%= f.label :Document_title %><br />
+   <% end %>    
+    <%= f.text_field :title1, :required => true, :placeholder => 'The title here' %>
+  </div>
+
+<% if @content.ref_type != 1 and @content.ref_type != 7  %>
+  <div class="field">
+   <% if @content.ref_type == 2 %>
+    <%= f.label :Book_title %><br />
+   <% elsif @content.ref_type == 3 %>
+    <%= f.label :Thesis_academic_degree %><br />
+   <% elsif @content.ref_type == 4 or @content.ref_type == 5 %>
+    <%= f.label :Journal_title %><br />
+   <% elsif @content.ref_type == 6 %>
+    <%= f.label :Newspaper_title %><br />
+	<% end %>
+    <%= f.text_field :title2, :required => true, :placeholder => 'The title here' %>
+  </div>
+ <% end %>
+  
+  
+  <div class="field">
+    <%= f.label :Publication_date %><br />
+    <%= f.text_field :pub_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
+    <%= f.text_field :pub_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
+    <%= f.text_field :pub_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
+  </div> 
+
+<% if @content.ref_type >= 1 and @content.ref_type <= 3  %>
+  <div class="field">
+    <%= f.label :Edition %><br />
+    <%= f.text_field :edition, :required => true, :placeholder => 'Second Edition' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Publication_house %><br />
+    <%= f.text_field :pub_house, :required => true, :placeholder => 'McGraw Hill' %>
+  </div>
+  <div class="field">
+    <%= f.label :Publication_place %><br />
+    <%= f.text_field :pub_place, :required => false, :placeholder => 'San José, Costa Rica' %>
+  </div>
+<% end %>
+
+<% if @content.ref_type >= 4 and @content.ref_type <= 6  %>
+  <div class="field">
+    <%= f.label :Volume %><br />
+    <%= f.text_field :volume ,  :required => false, :placeholder => 'Volume 2'%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :Journal_number %><br />
+    <%= f.text_field :journal_num,  :required => false, :placeholder => 'N° 32' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :Pages %><br />
+    <%= f.text_field :pages, :required => true, :placeholder => '52-78' %>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :Reference_date %><br />
+    <%= f.text_field :ref_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
+    <%= f.text_field :ref_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
+    <%= f.text_field :ref_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
+  </div>
+ 
+<% if @content.ref_type == 7  %> 
+  <div class="field">
+    <%= f.label :Website %><br />
+    <%= f.text_field :website,  :required => true, :placeholder => 'http//:whatineedtowrite@example.com' %>
+  </div>
+<% end %>
+<div class="field">
+    <%= f.label :Usuario %><br />
+    <%= f.text_field :User_id,  :required => true, :placeholder => 'usuario' %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit :value => 'Create Reference', :onclick => "asignPubDate()" %>
+  </div>
+<% end %>

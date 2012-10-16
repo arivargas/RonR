@@ -1,0 +1,33 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$', :placeholder => 'Your name' %>
+  </div>
+  <div class="field">
+    <%= f.label :Lastname %><br />
+    <%= f.text_field :lastname, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$', :placeholder => 'Your lastname' %>
+  </div>
+  <div class="field">
+    <%= f.label :Email %><br />
+    <%= f.email_field :email, :type => "email", :required =>true, :placeholder => 'Your email', :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
+  </div>
+  <div class="field">
+    <%= f.label :Password %><br />
+    <%= f.text_field :password, :required =>true, :pattern => '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$', :placeholder => 'Your password' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
