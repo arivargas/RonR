@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :Name %><br />
-    <%= f.text_field :name, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$' %>
+    <%= f.text_field :name, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$', :placeholder => 'Your name' %>
   </div>
   <div class="field">
-    <%= f.label :Last_name %><br />
-    <%= f.text_field :lastname, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$' %>
+    <%= f.label :Lastname %><br />
+    <%= f.text_field :lastname, :required =>true, :pattern => '^[a-zA-Z][a-zA-Z]{1,20}$', :placeholder => 'Your lastname' %>
   </div>
   <div class="field">
     <%= f.label :Email %><br />
@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :Password %><br />
-    <%= f.text_field :password, :required =>true, :pattern => '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' %>
+    <%= f.password_field :password, :required =>true, :pattern => '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$', :placeholder => 'Your password' %>
+  </div>
+    <div class="field">
+    <%= f.label :Password_confirmation %><br />
+    <%= f.password_field :password_confirmation, :required =>true, :pattern => '^[a-z0-9_-]{6,20}$', :placeholder => 'Your password' %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :Password %><br />
-    <%= f.text_field :password, :required =>true, :pattern => '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$', :placeholder => 'Your password' %>
+    <%= f.password_field :password, :required =>true, :pattern => '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$', :placeholder => 'Your password' %>
+  </div>
+    <div class="field">
+    <%= f.label :Password_confirmation %><br />
+    <%= f.password_field :password_confirmation, :required =>true, :pattern => '^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).{6,20}$', :placeholder => 'Your password, at least one number' %>
   </div>
   <div class="actions">
     <%= f.submit %>

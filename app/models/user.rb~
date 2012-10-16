@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
         
   validates :password, :password_confirmation,  
         :presence => true,
-        :format => { :with => /^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).{6,20}$/  , :message => "Password must be 6 to 20 characters" },
+        :format => { :with => /^[a-z0-9_-]{6,20}$/  , :message => "Password must be 6 to 20 characters" },
         :length => { :in => 6..20 },
         :confirmation => true
         

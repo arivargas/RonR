@@ -27,6 +27,7 @@ class ContentsController < ApplicationController
   def new
     @content = Content.new
     @content.ref_type = params[:type]
+    @user_id = session[:user_id]
 
     respond_to do |format|
     	format.html # new.html.erb

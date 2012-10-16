@@ -26,7 +26,7 @@
     <%= f.label :Chapter_title %><br />
    <% elsif @content.ref_type == 3 %>
     <%= f.label :Thesis_title %><br />
-   <% elsif @content.ref_type >= 4 and @content.ref_type <= 6 %>
+   <% elsif (@content.ref_type == 4) || (@content.ref_type == 5) || (@content.ref_type == 6) %>
     <%= f.label :Article_title %><br />
    <% else @content.ref_type == 7 %>
     <%= f.label :Document_title %><br />
@@ -52,12 +52,12 @@
   
   <div class="field">
     <%= f.label :Publication_date %><br />
-    <%= f.text_field :pub_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
+    <%= f.text_field :pub_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:(19|20)[0-9]{2})'%>
     <%= f.text_field :pub_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
     <%= f.text_field :pub_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
   </div> 
 
-<% if @content.ref_type >= 1 and @content.ref_type <= 3  %>
+<% if (@content.ref_type == 1) || (@content.ref_type == 2) || (@content.ref_type == 3) %>
   <div class="field">
     <%= f.label :Edition %><br />
     <%= f.text_field :edition, :required => true, :placeholder => 'Second Edition' %>
@@ -73,7 +73,7 @@
   </div>
 <% end %>
 
-<% if @content.ref_type >= 4 and @content.ref_type <= 6  %>
+<% if (@content.ref_type == 4) || (@content.ref_type == 5) || (@content.ref_type == 6) %>
   <div class="field">
     <%= f.label :Volume %><br />
     <%= f.text_field :volume ,  :required => false, :placeholder => 'Volume 2'%>
@@ -92,7 +92,7 @@
 
   <div class="field">
     <%= f.label :Reference_date %><br />
-    <%= f.text_field :ref_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
+    <%= f.text_field :ref_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:(19|20)[0-9]{2})'%>
     <%= f.text_field :ref_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
     <%= f.text_field :ref_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
   </div>
@@ -103,10 +103,13 @@
     <%= f.text_field :website,  :required => true, :placeholder => 'http//:whatineedtowrite@example.com' %>
   </div>
 <% end %>
+
 <div class="field">
     <%= f.label :Usuario %><br />
-    <%= f.text_field :User_id,  :required => true, :placeholder => 'usuario' %>
-  </div>
+    <%= f.hidden_field :User_id,  :value => @user_id %>
+</div>
+
+
   
   <div class="actions">
     <%= f.submit :value => 'Create Reference' %>
