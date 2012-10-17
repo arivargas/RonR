@@ -32,7 +32,7 @@
 <ol>
 <li><%= link_to "New Reference for books", new_content_path(:type => 1) %></li>
 <li><%= link_to "New Reference for book chapters' ", new_content_path(:type => 2) %></li>
-<li><%= link_to "New Reference for thesis' ", new_content_path(:type => 3) %></li>
+<li><%= link_to "New Reference for thesis", new_content_path(:type => 3) %></li>
 <li><%= link_to 'New Reference for journal articles', new_content_path(:type => 4) %></li>
 <li><%= link_to 'New Reference for scientist articles', new_content_path(:type => 5) %></li>
 <li><%= link_to 'New Reference for newspaper articles', new_content_path(:type => 6) %></li>

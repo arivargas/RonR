@@ -52,12 +52,12 @@
   
   <div class="field">
     <%= f.label :Publication_date %><br />
-    <%= f.text_field :pub_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
-    <%= f.text_field :pub_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
-    <%= f.text_field :pub_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
+    <%= f.text_field :pub_year, :size => '4', :placeholder => 'yyyy', :pattern => '(?:(19|20)[0-9]{2})'%>
+    <%= f.text_field :pub_month, :size => '2', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
+    <%= f.text_field :pub_day, :size => '2', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
   </div> 
 
-<% if (@content.ref_type == 1) || (@content.ref_type == 2) || (@content.ref_type == 3) %>
+<% if (@content.ref_type == 1) || (@content.ref_type == 2) %>
   <div class="field">
     <%= f.label :Edition %><br />
     <%= f.text_field :edition, :required => true, :placeholder => 'Second Edition' %>
@@ -72,6 +72,18 @@
     <%= f.text_field :pub_place, :required => false, :placeholder => 'San José, Costa Rica' %>
   </div>
 <% end %>
+<% if (@content.ref_type == 2) %>
+	<div class="field">
+    <%= f.label :Pages %><br />
+    <%= f.text_field :pages, :required => true, :placeholder => '52-78' %>
+  </div>
+ <% end %>
+ <% if (@content.ref_type == 3) %>
+ <div class="field">
+    <%= f.label :Publication_place %><br />
+    <%= f.text_field :pub_place, :required => true, :placeholder => 'Universidad de Costa Rica' %>
+  </div>	
+  <%end %>
 
 <% if (@content.ref_type == 4) || (@content.ref_type == 5) || (@content.ref_type == 6) %>
   <div class="field">
@@ -92,9 +104,9 @@
 
   <div class="field">
     <%= f.label :Reference_date %><br />
-    <%= f.text_field :ref_year, :size => '4', :required => 'false', :placeholder => 'yyyy', :pattern => '(?:19|20)[0-9]{2})'%>
-    <%= f.text_field :ref_month, :size => '2', :required => 'false', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
-    <%= f.text_field :ref_day, :size => '2', :required => 'false', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
+    <%= f.text_field :ref_year, :size => '4', :required => 'true', :placeholder => 'yyyy', :pattern => '(?:(19|20)[0-9]{2})'%>
+    <%= f.text_field :ref_month, :size => '2', :required => 'true', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
+    <%= f.text_field :ref_day, :size => '2', :required => 'true', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
   </div>
  
 <% if @content.ref_type == 7  %> 
@@ -104,8 +116,7 @@
   </div>
 <% end %>
 
-<div class="field">
-    <%= f.label :Usuario %><br />
+<div class="field">    
     <%= f.hidden_field :User_id,  :value => @user_id %>
 </div>
 
