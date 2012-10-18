@@ -1,35 +1,24 @@
-<h1>Listing references</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Education</title>
+<meta name="keywords" content="free css templates, education, school, college, university, templatemo.com" />
+<meta name="description" content="Education template is for academic related websites" />
+<link href="assets/stylesheets/templatemo_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
 
-<table>
-  <tr>
-    <th>Author(s)</th>
-    <th>Publication date</th>
-    <th>Reference date</th>
-    <th>Reference title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="templatemo_content_wrapper">
 
-<% @contents.each do |content| %>
-  <tr>
-    <td><%= content.author %></td>
-    <td><%= content.pub_date %></td>
-    <td><%= content.ref_date %></td>
-    <td><%= content.title1 %></td>
-    <td><%= link_to 'Show', content %></td>
-    <td><%= link_to 'Edit', edit_content_path(content) %></td>
-    <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<h1>Create references</h1>
+	<div id="templatemo_sidebar">
+    
+    	<div class="sidebar_box">
+        	
+            <h1>Create references</h1>
 <div>
 <strong>Printed documents</strong><br>
-<ol>
+<ol class="list_01">
 <li><%= link_to "New Reference for books", new_content_path(:type => 1) %></li>
 <li><%= link_to "New Reference for book chapters' ", new_content_path(:type => 2) %></li>
 <li><%= link_to "New Reference for thesis", new_content_path(:type => 3) %></li>
@@ -43,3 +32,63 @@
 <strong>Digital documents</strong><br>
 <ol><li><%= link_to 'New Reference for digital documents', new_content_path(:type => 7) %></li></ol>
 </div>
+
+            
+        </div><div class="sidebar_box_bottom"></div>
+            
+    </div> <!-- end of sidebar -->
+    
+<div id="templatemo_content">
+    
+    	<div class="content_box">
+        
+        	<h1>Listing references</h1>
+            
+            <p> Free CSS Templates are provided by <a href="http://www.templatemo.com" target="_parent">TemplateMo.com</a> for everyone. You may download, edit and apply this template for your websites. Credit goes to <a href="http://www.publicdomainpictures.net/">Public Domain Pictures</a> for photos used in this template. Nam ut libero at lacus feugiat tincidunt vitae sed ipsum.</p>
+            
+          <div class="cleaner_h20"></div>
+            
+           <table>
+  <tr>
+    <th>Author(s)</th>
+    <th>Publication date</th>
+    <th>Reference date</th>
+	 <th>type</th>	    
+    <th>Reference title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contents.each do |content| %>
+  <tr>
+    <td><%= content.author %></td>
+    <td><%= content.pub_date %></td>
+    <td><%= content.ref_date %></td>
+    <td><%= content.ref_type %></td>
+    <td><%= content.title1 %></td>
+    <td><%= link_to 'Show', content %></td>
+    <td><%= link_to 'PDF', :action => "show", :id => content, :format => :pdf %></td>>
+    <td><%= link_to 'Edit', edit_content_path(content) %></td>
+    <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table> <br />
+            
+
+<td><%= link_to 'Click here to see all of your references in a .pdf', :action => "index", :format => pdf %></td>
+            
+        	<div class="cleaner"></div>
+        </div><div class="content_box_bottom"></div>
+        
+    
+    </div> <!-- end of content -->
+    
+    <div class="cleaner"></div>
+
+</div>
+
+
+</body>
+</html>
+

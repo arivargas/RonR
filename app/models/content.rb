@@ -7,8 +7,8 @@ class Content < ActiveRecord::Base
         :format => { :with => /^\s*[a-zA-Z,.\s]+\s*$/, :message => "Lastname, First name letter" }
         
         
-  validates :ref_day, :ref_month, :ref_year,
-  		  :numericality => { :only_integer => true }
+  #validates :ref_day, :ref_month, :ref_year,
+  #		  :numericality => { :only_integer => true }
   		  
   validates :title1, 
   		  :presence => true 		  

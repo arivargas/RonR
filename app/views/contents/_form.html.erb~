@@ -15,6 +15,7 @@
     <%= f.label :Author %><br />
     <%= f.text_field :author , :required => true, :placeholder => 'Lastname, First name letter'%>
     <button>Add more authors</button>
+    
     <label>If there's no author, write down <strong>Anonymous</strong></label>
   </div>
   
@@ -43,11 +44,13 @@
    <% elsif @content.ref_type == 6 %>
     <%= f.label :Newspaper_title %><br />
 	<% end %>
-    <%= f.text_field :title2, :required => true, :placeholder => 'The title here' %> 
- <% elsif @content.ref_type == 3 %>
+    <%= f.text_field :title2, :required => true, :placeholder => 'The title here' %>
+ <%end%> 
+ <% if @content.ref_type == 3 %>
     <%= f.label :Thesis_academic_degree %><br />
     <%= f.text_field :title2, :required => true, :placeholder => 'Academic degree here' %>
- <% elsif @content.ref_type == 7 %>
+<% end %>
+ <% if @content.ref_type == 7 %>
     <%= f.label :Other_title %><br />
     <%= f.text_field :title2, :placeholder => 'This title is optional' %>
  <% end %>
@@ -107,14 +110,16 @@
   </div>
 <% end %>
 
-  <div class="field">
+  
+ 
+<% if @content.ref_type == 7  %>
+	<div class="field">
     <%= f.label :Reference_date %><br />
     <%= f.text_field :ref_year, :size => '4', :required => 'true', :placeholder => 'yyyy', :pattern => '(?:(19|20)[0-9]{2})'%>
     <%= f.text_field :ref_month, :size => '2', :required => 'true', :placeholder => 'mm', :pattern => '(?:0[1-9]|1[0-2])'%>
     <%= f.text_field :ref_day, :size => '2', :required => 'true', :placeholder => 'dd', :pattern => '(?:0[1-9]|1[0-9]|2[0-9])'%>
   </div>
- 
-<% if @content.ref_type == 7  %> 
+   
   <div class="field">
     <%= f.label :Website %><br />
     <%= f.text_field :website,  :required => true, :placeholder => 'http//:whatineedtowrite@example.com' %>
@@ -124,6 +129,10 @@
 <div class="field">    
     <%= f.hidden_field :user_id,  :value => @user_id %>
 </div>
+<div class="field">    
+    <%= f.hidden_field :ref_type, :value => @ref_type %>
+</div>
+
   
 <div class="actions">
     <%= f.submit :value => 'Create Reference' %>

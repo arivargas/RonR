@@ -6,6 +6,11 @@ class ContentsController < ApplicationController
     #@contents.User_id = params[:user_id]
 
     respond_to do |format|
+    # generar pdf
+    format.pdf do
+        render :pdf => "La casita de las torrejas - References",
+               :template => 'contents/index.html.erb'
+               end
       format.html # index.html.erb
       format.json { render json: @contents }
     end
@@ -15,10 +20,15 @@ class ContentsController < ApplicationController
   # GET /contents/1.json
   def show
     @content = Content.find(params[:id])
-    #@content.ref_type = Content.asignar_tipo_ref
+    #@ref_type = @content.ref_type
 
 	if (@content.user_id == session[:user_id])    
     respond_to do |format|
+    #generar pdf
+        format.pdf do
+           render :pdf => "La casita de las torrejas - References",
+                  :template => 'contents/show.html.erb'
+                   end
       format.html # show.html.erb
       format.json { render json: @content }
    	 end
@@ -33,7 +43,7 @@ class ContentsController < ApplicationController
     @content = Content.new
     @content.ref_type = params[:type]
     @user_id = session[:user_id]
-
+	 @ref_type = params[:type]
     respond_to do |format|
     	format.html # new.html.erb
       format.json { render json: @content }
@@ -56,7 +66,7 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(params[:content])
-
+	
     @month = Content.asignar_mes(@content.pub_month)
     if (@content.pub_year !=  nil and @content.pub_month != nil and @content.pub_day == 1)
     		@content.pub_date = "#{@month} #{@content.pub_day} #{@content.pub_year}"
