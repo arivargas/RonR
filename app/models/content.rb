@@ -4,10 +4,10 @@ class Content < ActiveRecord::Base
         
   validates :author,   
         :presence => true,
-        :format => { :with => /^\s*[a-zA-Z,\s]+\s*$/, :message => "Lastname, First name letter" }
+        :format => { :with => /^\s*[a-zA-Z,.\s]+\s*$/, :message => "Lastname, First name letter" }
         
         
-  validates :ref_day, :ref_month, :ref_year, :pub_year, :pub_month, :pub_day,
+  validates :ref_day, :ref_month, :ref_year,
   		  :numericality => { :only_integer => true }
   		  
   validates :title1, 
@@ -16,16 +16,12 @@ class Content < ActiveRecord::Base
   validates :title2, 
   		  :presence => true,
   		  :if => :type_of_reference?
-  		   		  
-  
-  #validates :surname, :presence => true, :if => "name.nil?"
- 
- 
+  		   		   
   def type_of_reference?
       (ref_type == 2 || ref_type == 3 || ref_type == 4 || ref_type == 5 || ref_type == 6)
   end
   
-  def asignar_mes(op)
+  def self.asignar_mes(op)
   		case op
   			when 1 then "january"
   			when 2 then "february"
@@ -37,9 +33,9 @@ class Content < ActiveRecord::Base
   			when 8 then "august"
   			when 9 then "september"
   			when 10 then "november"
-  			when 12 then "december"
-  			else "error"
+  			when 12 then "december"  			
   		end
   end
   
+   
 end

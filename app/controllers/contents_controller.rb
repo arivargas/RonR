@@ -3,7 +3,6 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = Content.where(["user_id = ?", session[:user_id]]).all
-    @contents = Content.all
     #@contents.User_id = params[:user_id]
 
     respond_to do |format|
@@ -16,7 +15,7 @@ class ContentsController < ApplicationController
   # GET /contents/1.json
   def show
     @content = Content.find(params[:id])
-    @content.ref_type = params[:type]
+    #@content.ref_type = Content.asignar_tipo_ref
 
 	if (@content.user_id == session[:user_id])    
     respond_to do |format|
@@ -57,16 +56,19 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(params[:content])
-    if (@content.pub_year !=  nil and @content.pub_month != nil and @content.pub_day =! nil)
-    		@month = Content.asignar_mes(@content.pub_month)
-    		@content.pub_date = "#{@content.pub_year}/#{@content.pub_month}/#{@content.pub_day}"
+
+    @month = Content.asignar_mes(@content.pub_month)
+    if (@content.pub_year !=  nil and @content.pub_month != nil and @content.pub_day == 1)
+    		@content.pub_date = "#{@month} #{@content.pub_day} #{@content.pub_year}"
+    elsif (@content.pub_year != nil and (@content.pub_month != nil  or @content.pub_day == nil))
+    		@content.pub_date = "#{@month} #{@content.pub_year}"
     elsif (@content.pub_year != nil and (@content.pub_month == nil  or @content.pub_day == nil))
-    		@content.pub_date = @content.pub_year
+    		@content.pub_date = "#{@content.pub_year}"    
     else
     		@content.pub_date = "s.f"
     end
-    @month = Content.asignar_mes(@content.ref_month)
-    @content.ref_date = "#{@content.ref_year}/#{@content.ref_month}/#{@content.ref_day}"
+    @month2 = Content.asignar_mes(@content.ref_month)
+    @content.ref_date = "#{@month2} #{@content.ref_day} #{@content.ref_year}"
 
     respond_to do |format|
       if @content.save

@@ -34,20 +34,27 @@
     <%= f.text_field :title1, :required => true, :placeholder => 'The title here' %>
   </div>
 
-<% if @content.ref_type != 1 and @content.ref_type != 7  %>
-  <div class="field">
+<div class="field">
+<% if @content.ref_type != 1 and @content.ref_type != 7 and @content.ref_type != 3  %>
    <% if @content.ref_type == 2 %>
     <%= f.label :Book_title %><br />
-   <% elsif @content.ref_type == 3 %>
-    <%= f.label :Thesis_academic_degree %><br />
    <% elsif @content.ref_type == 4 or @content.ref_type == 5 %>
     <%= f.label :Journal_title %><br />
    <% elsif @content.ref_type == 6 %>
     <%= f.label :Newspaper_title %><br />
 	<% end %>
     <%= f.text_field :title2, :required => true, :placeholder => 'The title here' %>
-  </div>
+ <%end%> 
+ <% if @content.ref_type == 3 %>
+    <%= f.label :Thesis_academic_degree %><br />
+    <%= f.text_field :title2, :required => true, :placeholder => 'Academic degree here' %>
+<% end %>
+ <% if @content.ref_type == 7 %>
+    <%= f.label :Other_title %><br />
+    <%= f.text_field :title2, :placeholder => 'This title is optional' %>
  <% end %>
+ </div>
+
   
   
   <div class="field">
@@ -119,10 +126,8 @@
 <div class="field">    
     <%= f.hidden_field :user_id,  :value => @user_id %>
 </div>
-
-
   
-  <div class="actions">
+<div class="actions">
     <%= f.submit :value => 'Create Reference' %>
   </div>
 <% end %>
