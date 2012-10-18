@@ -52,8 +52,7 @@
   <tr>
     <th>Author(s)</th>
     <th>Publication date</th>
-    <th>Reference date</th>
-	 <th>type</th>	    
+    <th>Reference date</th>  
     <th>Reference title</th>
     <th></th>
     <th></th>
@@ -65,19 +64,15 @@
     <td><%= content.author %></td>
     <td><%= content.pub_date %></td>
     <td><%= content.ref_date %></td>
-    <td><%= content.ref_type %></td>
     <td><%= content.title1 %></td>
-    <td><%= link_to 'Show', content %></td>
+    <td><%= link_to 'Show', content , :mostrar => 1%></td>
     <td><%= link_to 'PDF', :action => "show", :id => content, :format => :pdf %></td>>
     <td><%= link_to 'Edit', edit_content_path(content) %></td>
     <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table> <br />
-            
-
-<td><%= link_to 'Click here to see all of your references in a .pdf', :action => "index", :format => pdf %></td>
-            
+                        
         	<div class="cleaner"></div>
         </div><div class="content_box_bottom"></div>
         

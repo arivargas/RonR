@@ -1,44 +1,43 @@
 <!--<p id="notice"><%= notice %></p>-->
-
+<% @content.each do |content| %>
 <p>
 <!-- Referencia para libros-->
-<% if @content.ref_type == 1 %>
-	<% if @content.pub_place == nil %>
-		<%= @content.author %> (<%= @content.pub_date %>). <i><%= @content.title1 %></i>. <%= @content.edition %>. <%= @content.pub_house %>
+<% if content.ref_type == 1 %>
+	<% if content.pub_place.blank? %>
+		<%= content.author %> (<%= content.pub_date %>). <i><%= content.title1 %></i>. <%= content.edition %>. <%= content.pub_house %>
 	<% else %>
-		<%= @content.author %> (<%= @content.pub_date %>). <i><%= @content.title1 %></i>. <%= @content.edition %>. <%= @content.pub_place %>: <%= @content.pub_house %>
+		<%= content.author %> (<%= content.pub_date %>). <i><%= content.title1 %></i>. <%= content.edition %>. <%= content.pub_place %>: <%= content.pub_house %>
 	<% end %>
 <!-- Referencia para capítulos de libros-->
-<% elsif @content.ref_type == 2 %>	
-	<% if @content.pub_place == nil %>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title2 %>. <i><%= @content.title1 %></i>. (p <%= @content.pages %>). <%= @content.edition %>. <%= @content.pub_house %>
+<% elsif content.ref_type == 2 %>	
+	<% if content.pub_place.blank? %>
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title2 %>. <i><%= content.title1 %></i>. (p <%= content.pages %>). <%= content.edition %>. <%= content.pub_house %>
 	<% else %>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title2 %>. <i><%= @content.title1 %></i>. (p <%= @content.pages %>). <%= @content.edition %>. <%= @content.pub_place %>: <%= @content.pub_house %>	
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title2 %>. <i><%= content.title1 %></i>. (p <%= content.pages %>). <%= content.edition %>. <%= content.pub_place %>: <%= content.pub_house %>	
 	<% end %>
 <!-- Referencia para tesis-->
-<% elsif @content.ref_type == 3 %>	
-	<%= @content.author %> (<%= @content.pub_date %>). <i><%= @content.title1 %></i>. <%= @content.title2 %>. <%= @content.pub_place %>
+<% elsif content.ref_type == 3 %>	
+	<%= content.author %> (<%= content.pub_date %>). <i><%= content.title1 %></i>. <%= content.title2 %>. <%= content.pub_place %>
 <!-- Referencia para artículos de revista y periódicos-->
-<% elsif @content.ref_type == 4 || @content.ref_type == 5 || @content.ref_type == 6 %>	
-	<% if @content.volume.blank?  && @content.journal_num.blank?%>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title1 %>. <i><%= @content.title2 %></i>. (p <%= @content.pages %>)
-	<% elsif @content.volume != nil && @content.journal_num != nil%>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title1 %>. <i><%= @content.title2 %></i>. <%= @content.volume %>. <%= @content.journal_num %>.(p <%= @content.pages %>)	
-	<% elsif  @content.volume == nil  %>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title1 %>. <i><%= @content.title2 %></i>. <%= @content.journal_num %>. (p <%= @content.pages %>). 
+<% elsif content.ref_type == 4 || content.ref_type == 5 || content.ref_type == 6 %>	
+	<% if content.volume.blank?  && content.journal_num.blank?%>
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title1 %>. <i><%= content.title2 %></i>. (p <%= content.pages %>)
+	<% elsif content.volume.blank? == false && content.journal_num.blank? == false%>
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title1 %>. <i><%= content.title2 %></i>. <%= content.volume %>. <%= content.journal_num %>.(p <%= content.pages %>)	
+	<% elsif  content.volume.blank?  %>
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title1 %>. <i><%= content.title2 %></i>. <%= content.journal_num %>. (p <%= content.pages %>). 
 	<% else %>
-		<%= @content.author %> (<%= @content.pub_date %>). <%= @content.title1 %>. <i><%= @content.title2 %></i>. <%= @content.volume %>. (p <%= @content.pages %>)
+		<%= content.author %> (<%= content.pub_date %>). <%= content.title1 %>. <i><%= content.title2 %></i>. <%= content.volume %>. (p <%= content.pages %>)
 	<% end %>			
 <% else%>
-	<%if  @content.title2 == ""  %>
-		<%= @content.author %> (<%= @content.pub_date %>). <i><%= @content.title1 %></i>. Retrieved <%= @content.ref_date %>. From <%= @content.website %>
+	<%if  content.title2.blank? %>
+		<%= content.author %> (<%= content.pub_date %>). <i><%= content.title1 %></i>. Retrieved <%= content.ref_date %>. From <%= content.website %>
 	<% else %>
-		<%= @content.author %> (<%= @content.pub_date %>). <i><%= @content.title1 %></i>. <%= @content.title2 %>. Retrieved <%= @content.ref_date %>. From <%= @content.website %>
+		<%= content.author %> (<%= content.pub_date %>). <i><%= content.title1 %></i>. <%= content.title2 %>. Retrieved <%= content.ref_date %>. From <%= content.website %>
 	<% end %>
 <% end %>
-
-
 </p>
+<% end %>
 
-<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Edit', edit_content_path(content) %> |
 <%= link_to 'Back', contents_path %>

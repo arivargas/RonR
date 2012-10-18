@@ -19,8 +19,6 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
-    @content = Content.find(params[:id])
-    #@ref_type = @content.ref_type
 
 	if (@content.user_id == session[:user_id])    
     respond_to do |format|
@@ -43,7 +41,7 @@ class ContentsController < ApplicationController
     @content = Content.new
     @content.ref_type = params[:type]
     @user_id = session[:user_id]
-
+	 @ref_type = params[:type]
     respond_to do |format|
     	format.html # new.html.erb
       format.json { render json: @content }

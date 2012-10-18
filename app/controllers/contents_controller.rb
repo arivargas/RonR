@@ -19,9 +19,9 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
-    @content = Content.find(params[:id])
-    #@ref_type = @content.ref_type
-
+   
+	@content = Content.find(params[:id])
+	
 	if (@content.user_id == session[:user_id])    
     respond_to do |format|
     #generar pdf
